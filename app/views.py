@@ -1,38 +1,22 @@
-#from a_Model import ModelIt
 from flask import Flask, render_template, request,session
-#from flaskexample import app
-from sqlalchemy import create_engine
-from sqlalchemy_utils import database_exists, create_database
+from app import app
 import pandas as pd
 import numpy as np
 from math import pi
 from textwrap import wrap
-import psycopg2
 from bokeh.plotting import figure
 from bokeh.embed import components
 from bokeh.models import Span, FactorRange
 from bokeh.charts import Bar
 from scipy import stats
-from sklearn import linear_model, model_selection, preprocessing
-from sklearn.ensemble import RandomForestRegressor,GradientBoostingRegressor
-from sklearn.cross_validation import cross_val_score
-from sklearn.grid_search import GridSearchCV
 from sklearn.externals import joblib
 
 
-dbname = 'HospitalData'
-user = 'jalealsanjak'
-pswd = 'HashtagInsight'
-host='localhost'
-db = create_engine('postgres://%s%s/%s'%(user,host,dbname))
-con = None
-con = psycopg2.connect(database = dbname, user = user)
 
 HF_env = joblib.load('HF_lasso_results.pkl') 
-
 #####
-app = Flask(__name__)
-app.secret_key = "super secret key"
+#app = Flask(__name__)
+#app.secret_key = "super secret key"
 
 
 ############Intro to app section
@@ -112,14 +96,12 @@ def returns_predictors():
 		readmin_rate='heart failure return days',
 		improvement_script=improvement_script, improvement_div=improvement_div)
 
-
-if __name__ == '__main__':
-  app.run(debug=True)
+#if __name__ == '__main__':
+#  app.run(host='0.0.0.0',debug=True, port=8000)
 
 #hist = make_histogram(HF_env['model_mat'].iloc[:,0],provider,'Scaled heart failure return days')
 #hist_script, hist_div = components(hist)
 	
-
 
 
 
