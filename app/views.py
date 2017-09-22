@@ -50,7 +50,7 @@ def returns_predictors():
 	scaledmat = HF_env['model_mat'].apply(scale_zero_one)
 	#get the lasso model results
 	lasso_results = HF_env['model_results'].loc[
-	HF_env['model_results']['coef'].values!=0].loc[
+	HF_env['model_results']['inc_prob'].values>0.95].loc[
 	np.logical_not(
 	HF_env['model_results']['measure_id'].isin(
 	['H_RECMND_LINEAR_SCORE','H_HSP_RATING_LINEAR_SCORE','MORT_30_COPD',
@@ -65,7 +65,7 @@ def returns_predictors():
 	item in lasso_results['measure_id']]
 
 	lasso_results['rank_coef'] = [rank_direction(i,j) for 
-	i,j in zip(lasso_results['coef'],lasso_results['ranks'])]
+	i,j in zip(lasso_results['mean_coef'],lasso_results['ranks'])]
 
 	lasso_results['measure_names'] = [HF_env['measure_name_dict'][ID] for 
 	ID in lasso_results['measure_id']]
