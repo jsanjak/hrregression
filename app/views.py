@@ -46,7 +46,7 @@ def returns_predictors():
 	#	session['provider'] = current_provider_name
 	provider = HF_env['provider_id'][current_provider_name]#	
 	#so the rank is scale 0.5 to 1.5
-	rankmat = HF_env['model_mat'].rank(axis=0)/len(HF_env['model_mat']) + 0.5 #so its on scale 0.5 to 1.5
+	rankmat = HF_env['model_mat'].rank(axis=0)/len(HF_env['model_mat']) #+ 0.5 #so its on scale 0.5 to 1.5
 	scaledmat = HF_env['model_mat'].apply(scale_zero_one)
 	#get the lasso model results
 	lasso_results = HF_env['model_results'].loc[
