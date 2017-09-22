@@ -39,11 +39,11 @@ def returns_predictors():
 	if current_feature_name == None:
 		current_feature_name = 'Staff responsiveness'#request.args.get("feature_name")
 
-	current_provider_name = session.get('provider',None)
-	if current_provider_name == None:
-		current_provider_name = request.args.get("provider")
-		session['provider'] = current_provider_name
-
+	#pass provider name through when you change the variable
+	current_provider_name = request.args.get("provider")#session.get('provider',None)
+	#if current_provider_name != request.args.get("provider"):
+	#	current_provider_name = request.args.get("provider")
+	#	session['provider'] = current_provider_name
 	provider = HF_env['provider_id'][current_provider_name]#	
 	rankmat = HF_env['model_mat'].rank(axis=0)/len(HF_env['model_mat'])
 
@@ -87,7 +87,7 @@ def returns_predictors():
 	improvement_script, improvement_div = components(bar)
 		
 	#['Staff responsiveness','Discharge information'],
-	return render_template('data.html',
+	return render_template('data.html',provider=current_provider_name,
 		provider_name=HF_env['hospital_names'][int(provider)].title(),
 		readmin_rate='heart failure return days', 
 		feature_names= menu, 

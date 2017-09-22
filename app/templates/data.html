@@ -10,13 +10,16 @@
 
 <script src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.7.min.js"></script>
 <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.7.min.js"></script>
-
  <table>
     <tr>
         <td>{{ improvement_script|indent(4)|safe }}
 {{ improvement_div|safe }}</div></td>
         <td>
+        
         	<form action="/returns_predictors">
+        		<p hidden>
+        		<input type="text" name="provider" value="{{ provider }}" ><br>
+        		</p>
 				<select name="feature_name">
 					{% for feature in feature_names %}
 						{% if feature == current_feature_name %}
