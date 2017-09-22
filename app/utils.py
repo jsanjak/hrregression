@@ -48,12 +48,15 @@ def my_z_score(x):
     z=((x.values - x.mean())/x.std())
     return(z)
 
+def scale_zero_one(data):
+    return(0.5 + (data - np.min(data))/(np.max(data)-np.min(data)))
 
-def rank_direction(coef,rank):
+def rank_direction(coef,scaled):
 	if coef >0:
-		rank_coef = np.abs(coef)/(1 - rank)
+		#delta_1 = scaled - 1  
+		rank_coef = np.abs(coef)/(2 - scaled)
 	else:
-		rank_coef = np.abs(coef)/(rank)
+		rank_coef = np.abs(coef)/(scaled)
 	return(rank_coef)
 
 

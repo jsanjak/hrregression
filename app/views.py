@@ -45,8 +45,9 @@ def returns_predictors():
 	#	current_provider_name = request.args.get("provider")
 	#	session['provider'] = current_provider_name
 	provider = HF_env['provider_id'][current_provider_name]#	
-	rankmat = HF_env['model_mat'].rank(axis=0)/len(HF_env['model_mat'])
-
+	#so the rank is scale 0.5 to 1.5
+	rankmat = HF_env['model_mat'].rank(axis=0)/len(HF_env['model_mat']) + 0.5 #so its on scale 0.5 to 1.5
+	scaledmat = HF_env['model_mat'].apply(scale_zero_one)
 	#get the lasso model results
 	lasso_results = HF_env['model_results'].loc[
 	HF_env['model_results']['coef'].values!=0].loc[
@@ -54,7 +55,10 @@ def returns_predictors():
 	HF_env['model_results']['measure_id'].isin(
 	['H_RECMND_LINEAR_SCORE','MORT_30_COPD','MORT_30_HF']))]
 
-	lasso_results['ranks'] = [rankmat.loc[int(provider),item] for 
+
+
+	lasso_results['ranks'] = [(rankmat.loc[int(provider),item] + 
+		scaledmat.loc[int(provider),item])/2. for 
 	item in lasso_results['measure_id']]
 
 	lasso_results['rank_coef'] = [rank_direction(i,j) for 
