@@ -31,6 +31,9 @@ def returns_input():
 	#HF_env['hospital_names'].values()#
 	return(render_template("returns_input.html",hospitals = sorted(HF_env['hospital_names'].values())))
 
+@app.route('/slides')
+def returns_slides():
+	return(render_template("slides.html"))
 
 @app.route('/returns_predictors')
 def returns_predictors():
