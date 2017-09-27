@@ -57,9 +57,9 @@ def returns_predictors():
 	np.logical_not(
 	HF_env['model_results']['measure_id'].isin(
 	['H_RECMND_LINEAR_SCORE','H_HSP_RATING_LINEAR_SCORE','MORT_30_COPD',
-         'MORT_30_HF','MORT_30_STK','MORT_30_AMI',
-         'MORT_30_PN','PSI_4_SURG_COMP','MORT_30_CABG'
-        ]))]
+   			 'MORT_30_HF','MORT_30_STK','MORT_30_AMI',
+         'MORT_30_PN','PSI_4_SURG_COMP','MORT_30_CABG',
+'PSI_15_ACC_LAC','OP_17','IMM_3_OP_27_FAC_ADHPCT','PSI_15_ACC_LAC','OP_22']))]
 
 
 
