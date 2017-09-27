@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>hrregression</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css",rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <!link href="starter-template.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+    
+    <!link rel="stylesheet" type="text/css" media="screen" href="../static/css/bootstrap-select.min.css">
+    
+    <link href="../static/css/carousel.css" rel="stylesheet">
+  </head>
+  <style>
+      html,
+      body {
+            height: 100%;
+            background-color: #000000;
+            background-image: url('../heart_beat.jpg');
+            background-size: 1440px 800px;
+            background-repeat:no-repeat;
+            display: compact;
+          }
+
+  </style>  
+  <body>  
+
+    <div class="site-wrapper" style="">
+
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+            
+          <div class="masthead clearfix">
+
+            <div class="inner">
+              <h3 class="masthead-brand">HRRP</h3>
+
+              <nav>
+                <ul class="nav masthead-nav">
+                  <li class="active"><a href="#">Home</a></li>
+                  <li><a href="https://docs.google.com/presentation/d/1Q3D1IjOJCsGrYnGbLDWq1kqkUoIwbgf3nisvAGifheQ/edit#slide=id.g256e5f251c_0_10">Slides</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+          <div class="inner cover">
+            <h1 class="cover-heading">Reduce heart failure readmissions</h1>
+            &nbsp;
+              <form  action="/returns_predictors" method="GET">
+                <label class="button" for="provider">Enter your hospital name:</label>
+                  <input type="text" id="myInput" onkeyup="myFunction()" size="35" name=provider placeholder="e.g. Mass ">
+                  <ul id="myUL">
+                    {% for hospital in hospitals %}
+                
+      
+                    <!p hidden>
+                    <li>
+                    <a href="#">{{ hospital }}</a>
+                    </li>
+                    <!/p>
+          
+                      
+                    {% endfor %}
+                  </ul>
+                <div>          
+                  <button type="submit" class="btn btn-default:hover btn-lg">Take action now!</button>
+                </div>
+              </form>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+ <!-- /.container-->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    
+    <!script src="static/js/bootstrap.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <!script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="../static/js/dropdown.js"></script>
+    <!script src="{{ url_for('static', filename='js/dropdown.js')}}"></script>
+    <!script src="../static/js/bootstrap-select.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-select.js')}}"></script>
+    <script type="text/javascript">
+      $('.selectpicker').selectpicker('refresh');
+    </script>
+
+
+    <script>
+function myFunction() {
+    // Declare variables
+    var input, filter, ul, li, a, i;
+    input = document.getElementById('myInput');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName('li');
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+</script>
+  </body>
+</html>
