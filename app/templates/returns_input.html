@@ -23,19 +23,22 @@
 background-image: url(../static/heart_note.jpg);
 background-size: cover;
 height: 63%; 
-color: #000000;}
+color: black;}
 .jumbotron h1 {
    margin-top:30%; 
 }
 </style>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" style="color:black">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">HRRP</a>
+      <a class="navbar-brand" style="color:black" href="#">HRRP</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="/slides">Slides</a></li>
+      <li class="active">
+	<a style="color:black" href="#">Home</a>
+      </li>
+      <li>
+	<a style="color:black" href="/slides">Slides</a></li>
     </ul>
   </div>
 </nav>
@@ -45,7 +48,7 @@ color: #000000;}
 <div class="cover text-center">
   <div class="row">
     <div class="col-sm-12">
-      <h1 class="cover-heading">Reduce heart failure readmissions</h1>
+      <h1  style="color:black" class="cover-heading">Reduce heart failure readmissions</h1>
       <form  action="/returns_predictors" method="GET">
         <label class="button" for="provider"></label>
           <select name="provider">
